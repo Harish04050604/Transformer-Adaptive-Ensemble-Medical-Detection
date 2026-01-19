@@ -1,0 +1,80 @@
+There are six stages in our project
+Stage-1: Supervised Training on Labelled Data
+    Input
+        labelled/img
+        labelled/ann
+
+    What to Do
+        Convert annotations to detection format (YOLO / COCO)
+        Train two base models:
+            LRPM-HAM (CNN-based) → strong local feature learner
+            Transformer-Attention model → global context learner
+
+    Output
+        Two trained base detectors
+
+     Purpose: Learn reliable initial polyp detection from limited labelled data.
+
+Stage-2: Inference on Unlabelled Data
+    Input
+        unlabelled/img
+        Trained base models
+
+    What to Do
+        Run both models on unlabelled images
+        Obtain:
+            Bounding boxes
+            Confidence scores
+        Store predictions separately for each model
+
+     Purpose: Produce candidate detections for pseudolabeling.
+
+Stage-3: Adaptive Ensemble with Al-AdaBoost
+    Input
+        Predictions from both models
+
+    What to Do
+        Combine predictions using Al-AdaBoost
+        Assign higher weights to:
+            Consistent detections
+            High-confidence predictions
+        Penalize:
+            Conflicting or noisy detections
+
+     Purpose: Reduce false positives and strengthen reliable predictions.
+
+Stage-4: Pseudolabel Generation (Key Contribution)
+    What to Do
+        Apply confidence threshold (e.g., ≥ 0.8)
+        Retain only high-confidence ensemble predictions
+        Save them as pseudolabels for unlabelled images
+
+    Purpose: Convert unlabelled images into weakly labelled data.
+
+Stage-5: Semi-Supervised Retraining
+    Input
+        Original labelled data
+        High-confidence pseudolabels
+
+    What to Do
+        Merge both datasets
+        Retrain ensemble models
+        Optionally iterate multiple rounds
+
+    Purpose: Improve detection performance with minimal manual labeling.
+
+Stage-6: False-Positive Reduction Analysis
+    What to Evaluate
+        False Positive Rate (FPR)
+        Precision
+        Recall
+        mAP
+
+    Comparision
+        | Model                         | False Positives |
+        | ----------------------------- | --------------- |
+        | Baseline CNN                  | High            |
+        | Proposed Ensemble             | Reduced         |
+        | Transformer-Enhanced Ensemble | Lowest          |
+
+    Purpose: Prove future enhancement effectiveness

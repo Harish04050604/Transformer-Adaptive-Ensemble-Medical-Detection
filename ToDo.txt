@@ -1,2 +1,1 @@
 1. Three types of output should be shown for labelled and pseudolabeled images
-2. Create summary.txt
