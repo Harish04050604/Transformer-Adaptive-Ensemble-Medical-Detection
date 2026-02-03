@@ -15,7 +15,6 @@ class PolypDataset(torch.utils.data.Dataset):
         img_name = self.images[idx]
         img_path = os.path.join(self.img_dir, img_name)
 
-        # IMPORTANT FIX: label file is image.png.txt
         label_path = os.path.join(self.label_dir, img_name + ".txt")
 
         img = cv2.imread(img_path)
@@ -32,7 +31,6 @@ class PolypDataset(torch.utils.data.Dataset):
                     cls = int(parts[0])
                     xc, yc, w, h = map(float, parts[1:])
 
-                    # Convert YOLO → pixel bbox
                     W, H = 384, 288
                     x1 = (xc - w/2) * W
                     y1 = (yc - h/2) * H
@@ -40,7 +38,7 @@ class PolypDataset(torch.utils.data.Dataset):
                     y2 = (yc + h/2) * H
 
                     boxes.append([x1, y1, x2, y2])
-                    labels.append(1)   # polyp class
+                    labels.append(1)   
 
         target = {
             "boxes": torch.tensor(boxes, dtype=torch.float32),

@@ -1,0 +1,9 @@
+go to the projct directory
+python -m venv venv
+.\venv\Scripts\Activate
+python imageLabel.py
+python imageUnlabel.py
+python json_to_bbox.py
+python bbox_to_yolo.py
+python train_lrpm_ham.py
+python infer_lrpm.py

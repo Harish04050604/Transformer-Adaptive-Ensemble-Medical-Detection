@@ -1,3 +1,6 @@
 To do:
-1. Generate 3 types of output should be shown for labelled and pseudolabeled images
-2. Provide accuracy of the model according to how much percentage dataset is used (20,30,40 and 50%)
+1. Push the cropped images to Transformer model. 
+2. Using AdaBoost generate the pseudolabels with the help of results obtained from lrpm-ham and transformer attention model.
+
+Finished:
+1. Use unlabelled images as inpt and generate polyp region images (bounding box) using train_lrpm_ham.py

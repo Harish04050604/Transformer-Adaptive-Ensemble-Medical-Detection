@@ -10,22 +10,17 @@ OUT_DIR = "labelled/bboxes"
 os.makedirs(OUT_DIR, exist_ok=True)
 
 def decode_bitmap(bitmap_data, image_height, image_width, origin):
-    # Base64 decode
     compressed = base64.b64decode(bitmap_data)
 
-    # Zlib decompress → PNG bytes
     png_bytes = zlib.decompress(compressed)
 
-    # Decode PNG to mask image
     mask = cv2.imdecode(
         np.frombuffer(png_bytes, np.uint8),
         cv2.IMREAD_GRAYSCALE
     )
 
-    # Convert to binary mask
     mask = (mask > 0).astype(np.uint8)
 
-    # Place into full image mask using origin
     full_mask = np.zeros((image_height, image_width), dtype=np.uint8)
     x0, y0 = origin
     h, w = mask.shape

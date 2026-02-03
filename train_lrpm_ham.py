@@ -8,7 +8,6 @@ print("Using device:", device)
 
 dataset = PolypDataset("labelled/img", "labelled/yolo")
 
-# SMALL batch size for CPU
 loader = DataLoader(
     dataset,
     batch_size=1,
@@ -19,13 +18,13 @@ loader = DataLoader(
 model = LRPM_HAM_Detector().to(device)
 optimizer = torch.optim.Adam(model.parameters(), lr=1e-4)
 
-EPOCHS = 3   # very small (enough for demo + project)
+EPOCHS = 3   
 
 for epoch in range(EPOCHS):
     model.train()
     total_loss = 0
 
-    print(f"\n🔹 Starting Epoch {epoch+1}/{EPOCHS}")
+    print(f"\nStarting Epoch {epoch+1}/{EPOCHS}")
 
     for i, (images, targets) in enumerate(loader):
         images = [img.to(device) for img in images]
@@ -44,7 +43,7 @@ for epoch in range(EPOCHS):
         if i % 5 == 0:
             print(f"  Batch {i}/{len(loader)} | Loss: {loss.item():.4f}")
 
-    print(f"✅ Epoch {epoch+1} finished | Total Loss: {total_loss:.4f}")
+    print(f"Epoch {epoch+1} finished | Total Loss: {total_loss:.4f}")
 
 torch.save(model.state_dict(), "lrpm_ham_detector.pth")
 print("\n LRPM-HAM model trained and saved as lrpm_ham_detector.pth")
