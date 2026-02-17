@@ -36,6 +36,12 @@ class LRPM_HAM_Detector(torch.nn.Module):
             rpn_anchor_generator=anchor_generator,
             box_roi_pool=roi_pooler
         )
-
+     # ✅ ADD THIS METHOD
+    def extract_feature_maps(self, images):
+        x = torch.stack(images)      # [B,3,H,W]
+        features = self.backbone(x)  # CNN feature mapping
+        features = self.ham(features)
+        return features
+    
     def forward(self, images, targets=None):
         return self.model(images, targets)
