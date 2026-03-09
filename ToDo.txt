@@ -1,8 +1,6 @@
 To do:
-1.Feature Map output(completed)
-2.Performance metrics(To be done in 3rd review)
-3.To study on the architecture diagram
-4.Using AdaBoost generate the pseudolabels with the help of results obtained from lrpm-ham and transformer attention model.
-
-Finished:
-1. Use unlabelled images as inpt and generate polyp region images (bounding box) using train_lrpm_ham.py
+1. Transformer Attention Model building (i/p: cropped img , o/p:segmentation output) --> 10/3/2026-12/3/2026
+2. Softmax of LRPM-HAM and tune LRPM-HAM model --> 13/3/2026-15/3/2026
+3. RAM model soft label -> 16/3/2026-20/3/2026
+4. Al-AdaBoost 
+5. Performance metrics
