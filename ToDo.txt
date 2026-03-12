@@ -1,5 +1,6 @@
 To do:
 1. Transformer Attention Model building (i/p: cropped img , o/p:segmentation output) --> 10/3/2026-12/3/2026
+  1.1 Need to refine the segmentation output by removing the bounding box(as of 12/3/26)
 2. Softmax of LRPM-HAM and tune LRPM-HAM model --> 13/3/2026-15/3/2026
 3. RAM model soft label -> 16/3/2026-20/3/2026
 4. Al-AdaBoost 
