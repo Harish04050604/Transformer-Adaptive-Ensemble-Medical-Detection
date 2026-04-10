@@ -1,13 +1,28 @@
-go to the projct directory
+Go to the Projct Directory: 
+cd .\Transformer-Adaptive-Ensemble-Medical-Detection\
+
+Enable Virtual Environment:
 python -m venv venv
 .\venv\Scripts\Activate
+
+Dataset Split (labelled + unlabelled):
 python imageLabel.py
 python imageUnlabel.py
+
+Dataset Conversion (json->bbox->yolo):
 python json_to_bbox.py
 python bbox_to_yolo.py
+
+LRPM-HAM:
 python train_lrpm_ham.py
 python infer_lrpm.py
 
+Transformer:
+python bbox_to_mask.py
+python prepare_splits.py
+python train.py
+python infer_transformer.py
+
 RAM :
 train_ram.py
-generate_soft_labels.py
+ram_model.py
