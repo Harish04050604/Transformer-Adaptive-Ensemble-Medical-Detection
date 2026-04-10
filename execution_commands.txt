@@ -7,3 +7,7 @@ python json_to_bbox.py
 python bbox_to_yolo.py
 python train_lrpm_ham.py
 python infer_lrpm.py
+
+RAM :
+train_ram.py
+generate_soft_labels.py
