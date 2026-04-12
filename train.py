@@ -5,7 +5,7 @@ import torch.optim as optim
 from torch.utils.data import DataLoader
 
 from transformer_model import PolypSegformer
-from segmentation_dataset import PolypSegDataset
+from segmentation_dataset import PolypDataset
 from loss import BCEDiceLoss
 
 IMAGE_DIR   = "labelled/img"
@@ -20,8 +20,8 @@ LR          = 6e-5
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Using device: {device}")
 
-train_ds     = PolypSegDataset(IMAGE_DIR, MASK_DIR, TRAIN_SPLIT, augment=True)
-val_ds       = PolypSegDataset(IMAGE_DIR, MASK_DIR, VAL_SPLIT,   augment=False)
+train_ds     = PolypDataset(IMAGE_DIR, MASK_DIR, TRAIN_SPLIT, augment=True)
+val_ds       = PolypDataset(IMAGE_DIR, MASK_DIR, VAL_SPLIT,   augment=False)
 train_loader = DataLoader(train_ds, batch_size=BATCH_SIZE,
                           shuffle=True,  num_workers=2)
 val_loader   = DataLoader(val_ds,   batch_size=BATCH_SIZE,

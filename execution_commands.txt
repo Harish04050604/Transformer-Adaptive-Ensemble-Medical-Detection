@@ -18,7 +18,7 @@ python train_lrpm_ham.py
 python infer_lrpm.py
 
 Transformer:
-python bbox_to_mask.py
+python bbox_to_masks.py
 python prepare_splits.py
 python train.py
 python infer_transformer.py

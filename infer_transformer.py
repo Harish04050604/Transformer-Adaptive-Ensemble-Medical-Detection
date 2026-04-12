@@ -1,4 +1,4 @@
-infer_transformer.py
+# infer_transformer.py
 
 import os
 import cv2
