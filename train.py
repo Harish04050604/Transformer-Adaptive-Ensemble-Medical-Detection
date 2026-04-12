@@ -23,9 +23,9 @@ print(f"Using device: {device}")
 train_ds     = PolypDataset(IMAGE_DIR, MASK_DIR, TRAIN_SPLIT, augment=True)
 val_ds       = PolypDataset(IMAGE_DIR, MASK_DIR, VAL_SPLIT,   augment=False)
 train_loader = DataLoader(train_ds, batch_size=BATCH_SIZE,
-                          shuffle=True,  num_workers=2)
+                          shuffle=True,  num_workers=0)
 val_loader   = DataLoader(val_ds,   batch_size=BATCH_SIZE,
-                          shuffle=False, num_workers=2)
+                          shuffle=False, num_workers=0)
 
 model     = PolypSegformer().to(device)
 optimizer = optim.AdamW(model.parameters(), lr=LR)
