@@ -18,7 +18,7 @@ loader = DataLoader(
 model = LRPM_HAM_Detector().to(device)
 optimizer = torch.optim.Adam(model.parameters(), lr=1e-4)
 
-EPOCHS = 3   
+EPOCHS = 10   
 
 for epoch in range(EPOCHS):
     model.train()
