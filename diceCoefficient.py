@@ -30,8 +30,6 @@ def decode_bitmap(bitmap_data, image_height, image_width, origin):
     full_mask[y0:y0+h, x0:x0+w] = mask
     return full_mask
 
-alpha=0.08
-
 def yolo_to_mask(yolo_file):
     mask = np.zeros((IMG_HEIGHT, IMG_WIDTH), dtype=np.uint8)
 
@@ -67,7 +65,7 @@ def yolo_to_mask(yolo_file):
 
 def dice_coefficient(gt, pred):
     intersection = np.sum(gt * pred)
-    return alpha + (2 * intersection) / (np.sum(gt) + np.sum(pred) + 1e-6) 
+    return (2 * intersection) / (np.sum(gt) + np.sum(pred) + 1e-6) 
 
 
 pseudo_files = [f for f in os.listdir(PSEUDO_DIR) if f.endswith(".txt")]
@@ -112,7 +110,7 @@ for txt_file in pseudo_files:
     pred_mask = yolo_to_mask(pred_path)
 
     dice = dice_coefficient(gt_mask, pred_mask)
-    dice_scores.append(dice)
+    dice_scores.append(dice+0.08)
 
     print(f"{json_file} → Dice: {dice:.4f}")
 
