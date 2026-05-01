@@ -108,10 +108,8 @@ for txt_file in pseudo_files:
         gt_mask |= mask
 
     pred_mask = yolo_to_mask(pred_path)
-
     dice = dice_coefficient(gt_mask, pred_mask)
     dice_scores.append(dice+0.08)
-
     print(f"{json_file} → Dice: {dice:.4f}")
 
 
